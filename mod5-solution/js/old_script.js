@@ -14,15 +14,13 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 		var dc = {};
 
 		var homeHtmlUrl = "snippets/home-snippet.html";
-		var allCategoriesUrl =
-				"https://davids-restaurant.herokuapp.com/categories.json";
+		var allCategoriesUrl = "https://davids-restaurant.herokuapp.com/categories.json";
 		var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 		var categoryHtml = "snippets/category-snippet.html";
-		var menuItemsUrl =
-				"https://davids-restaurant.herokuapp.com/menu_items.json?category=";
+		var menuItemsUrl = "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
 		var menuItemsTitleHtml = "snippets/menu-items-title.html";
 		var menuItemHtml = "snippets/menu-item.html";
-
+		
 		// Convenience function for inserting innerHTML for 'select'
 		var insertHtml = function (selector, html) {
 				var targetElem = document.querySelector(selector);
@@ -83,7 +81,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 				showLoading("#main-content");
 				$ajaxUtils.sendGetRequest(
 						allCategoriesUrl,
-						buildAndShowHomeHTML , // ***** <---- TODO: STEP 1: Substitute [...] ******
+						buildAndShowHomeHTML, // ***** <---- TODO: STEP 1: Substitute [...] ******
 						true); // Explicitely setting the flag to get JSON from server processed into an object literal
 		});
 		// *** finish **
@@ -116,14 +114,14 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 								// it into the home html snippet.
 								//
 								chosenCategoryShortName = chosenCategoryShortName.replace(new RegExp('"', "g"), "'");
-								var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml,'randomCategoryShortName', chosenCategoryShortName);
+								var homeHtmlToInsertIntoMainPage = insertProperty(chosenCategoryShortName, "ramdonCategoryShortName", chosenCategoryShortName);
 
 
 								// TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
 								// Use the existing insertHtml function for that purpose. Look through this code for an example
 								// of how to do that.
+								// ....
 								insertHtml("#main-content", homeHtmlToInsertIntoMainPage);
-
 						},
 						false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 		}
@@ -173,9 +171,9 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 												switchMenuToActive();
 
 												var categoriesViewHtml =
-														buildCategoriesViewHtml(categories,
-																										categoriesTitleHtml,
-																										categoryHtml);
+																buildCategoriesViewHtml(categories,
+																												categoriesTitleHtml,
+																												categoryHtml);
 												insertHtml("#main-content", categoriesViewHtml);
 										},
 										false);
@@ -229,9 +227,9 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 												switchMenuToActive();
 
 												var menuItemsViewHtml =
-														buildMenuItemsViewHtml(categoryMenuItems,
-																									 menuItemsTitleHtml,
-																									 menuItemHtml);
+																buildMenuItemsViewHtml(categoryMenuItems,
+																											 menuItemsTitleHtml,
+																											 menuItemHtml);
 												insertHtml("#main-content", menuItemsViewHtml);
 										},
 										false);
@@ -298,7 +296,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 						// Add clearfix after every second menu item
 						if (i % 2 !== 0) {
 								html +=
-								"<div class='clearfix visible-lg-block visible-md-block'></div>";
+										"<div class='clearfix visible-lg-block visible-md-block'></div>";
 						}
 
 						finalHtml += html;
